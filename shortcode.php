@@ -108,7 +108,7 @@ function paraphraser()
             .paraphraser_option_box {
                 position: relative;
                 border: 1px solid #ddd;
-                display: felx;
+                display: flex;
                 background: #fdf9f9c7;
                 padding: 10px 10px 10px 10px;
                 justify-content: flex-start;
