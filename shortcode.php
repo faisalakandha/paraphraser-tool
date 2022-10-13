@@ -156,7 +156,7 @@ function paraphraser()
     </head>
 
     <body>
-        <div class="row">
+        <div class="row" style="width: 80%; margin: auto;">
 
             <div class="col-lg-6">
                 <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
@@ -174,9 +174,7 @@ function paraphraser()
                     <div class="form-group">
                         <textarea placeholder="Enter your input text here..." name="input_content" id="input-content"></textarea>
                         <div class="upload-btn-wrapper">
-                            <img data-src="https://www.paraphraser.io/images/file.png" alt="Upload" width="24" src="https://www.paraphraser.io/images/file.png">
-                            <button class="btn">Upload a file</button>
-                            <input type="file" name="myfile" />
+
                         </div>
                         <div size="1" autocomplete="off" style="display: inline-block; float:right; padding-right: 15px;">
                             <select id="selectLang" name="languages" id="langs">
@@ -210,15 +208,19 @@ function paraphraser()
                     <textarea style="padding-top: 16px;" id="output-content" disabled placeholder="Paraphrased text will be shown here...." class="form-control"></textarea>
                 </div>
             </div>
-        </div>
-        <center>
-            <div id="textSubmit"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
-                                                                                    border-radius: 10px; font">
-                <div id="loadingSpinner" class="spinner-border text-primary" role="status">
+
+
+            <div id="textSubmit "><input type="button" value="Submit" style="margin: auto; margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
+                                                                                    border-radius: 10px;">
+                <div style="margin: auto;" id="loadingSpinner" class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
+                <input type="button" value="Premium Submit" style="float: right;margin-top: 20px; border:none; background-color:#FFD700; height: 40px; width: 150px; font-size: 16px; font-weight: 500px; 
+                                                                                    border-radius: 10px;">
+                <div>
+                </div>
             </div>
-        </center>
+        </div>
 
         </div>
 
