@@ -215,8 +215,8 @@ function paraphraser()
                 <div style="margin: auto;" id="loadingSpinner" class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <input type="button" value="Premium Submit" style="float: right;margin-top: 20px; border:none; background-color:#FFD700; height: 40px; width: 150px; font-size: 16px; font-weight: 500px; 
-                                                                                    border-radius: 10px;">
+                <a href="https://jasper.ai/"><input type="button" value="Premium Submit" style="float: right;margin-top: 20px; border:none; background-color:#FFD700; height: 40px; width: 150px; font-size: 16px; font-weight: 500px; 
+                                                                                    border-radius: 10px;"></a>
                 <div>
                 </div>
             </div>
