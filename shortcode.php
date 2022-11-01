@@ -173,8 +173,10 @@ function paraphraser()
 
     <body>
         <div>
-        <center><p id="loading-count" style="z-index: 2; position: absolute; margin:auto; top: 50%; left: 50%;"></p></center>
-            <div id="app-container" class="row" style="z-index: 1; position:relative;">
+            <center>
+                <p id="loading-count" style="z-index: 2; position: absolute; margin:auto; top: 50%; left: 50%;"></p>
+            </center>
+            <div id="app-container" class="row" style="z-index: 1; position:relative; width: 80%; margin: auto;">
                 <div class="col-lg-6">
                     <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
 
@@ -191,9 +193,7 @@ function paraphraser()
                         <div class="form-group">
                             <textarea placeholder="Enter your input text here..." name="input_content" id="input-content"></textarea>
                             <div class="upload-btn-wrapper">
-                                <img data-src="https://www.paraphraser.io/images/file.png" alt="Upload" width="24" src="https://www.paraphraser.io/images/file.png">
-                                <button class="btn">Upload a file</button>
-                                <input type="file" name="myfile" />
+
                             </div>
                             <div size="1" autocomplete="off" style="display: inline-block; float:right; padding-right: 15px;">
                                 <select id="selectLang" name="languages" id="langs">
@@ -228,14 +228,14 @@ function paraphraser()
                     </div>
                 </div>
             </div>
-            <center>
-                <div id="textSubmit"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
+
+            <div id="textSubmit" style="width:76%; margin: auto;"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
                                                                                     border-radius: 10px;">
-                    <div id="loadingSpinner" class="spinner-border text-primary" role="status">
-                        <!-- <span ></span> -->
-                    </div>
-                </div>
-            </center>
+                <div id="loadingSpinner" class="spinner-border text-primary" role="status"></div>
+                <a href="https://jasper.ai/"><input type="button" value="Premium Submit" style="float: right;margin-top: 20px; border:none; background-color:#FFD700; height: 40px; width: 150px; font-size: 16px; font-weight: 500px; 
+                                                                                    border-radius: 10px;"></a>
+            </div>
+
         </div>
         </div>
     </body>
