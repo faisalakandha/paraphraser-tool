@@ -65,7 +65,7 @@ function paraphraser()
                             CreateLoading();
                         }, 500)
 
-                        return fetch('http://127.0.0.1/wp-json/paraphraser/v1/paraphrased', {
+                        return fetch('https://sentencecheckup.com/wp-json/paraphraser/v1/paraphrased', {
                                 method: 'POST', // or 'PUT',
                                 mode: 'cors', // no-cors, *cors, same-origin
                                 headers: {
