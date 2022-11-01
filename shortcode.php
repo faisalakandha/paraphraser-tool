@@ -19,6 +19,8 @@ function paraphraser()
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
+            var globe = 0;
+
             var omVAL = "Fluency";
             //OBJECT Mapper
             function objectMapper(value) {
@@ -30,6 +32,7 @@ function paraphraser()
 
             // Menu 
             $("document").ready(function() {
+                var myInterval;
                 $("#loadingSpinner").hide();
                 $("#defaultItem").addClass("active");
                 $(".item").click(function() {
@@ -42,6 +45,11 @@ function paraphraser()
                 var $input = $('#input-content');
                 var $langSelected = $('#selectLang');
 
+                function CreateLoading() {
+                        myElement = $("#loading-count");
+                        myElement.text(globe + "%");
+                }
+
                 $("#textSubmit").click(function() {
                     $("#loadingSpinner").show();
                     var data = {
@@ -52,6 +60,12 @@ function paraphraser()
                     };
 
                     async function postData(data) {
+                        $("#app-container").css("opacity", 0.3);
+                        myInterval = setInterval(() => {
+                            globe += 1;
+                            CreateLoading();
+                        }, 2000)
+
                         return fetch('http://127.0.0.1/wp-json/paraphraser/v1/paraphrased', {
                                 method: 'POST', // or 'PUT',
                                 mode: 'cors', // no-cors, *cors, same-origin
@@ -61,10 +75,18 @@ function paraphraser()
                                 },
                                 body: JSON.stringify(data),
                             })
-                            .then((response) => response.text())
+                            .then((response) => {
+                                response.text();
+                                while (globe <= 100) {
+                                    globe++;
+                                    CreateLoading();
+                                }
+                            })
                             .then(function(data) {
                                 $("#output-content").val(data.substring(1, data.length - 1));
                                 $("#loadingSpinner").hide();
+                                $("#app-container").css("opacity", 1);
+                                clearInterval(myInterval);
                             })
                             .catch((error) => {
                                 console.error('Error:', error);
@@ -156,7 +178,7 @@ function paraphraser()
     </head>
 
     <body>
-        <div class="row">
+        <div id="app-container" class="row">
 
             <div class="col-lg-6">
                 <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
@@ -213,13 +235,12 @@ function paraphraser()
         </div>
         <center>
             <div id="textSubmit"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
-                                                                                    border-radius: 10px; font">
+                                                                                    border-radius: 10px;">
                 <div id="loadingSpinner" class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                    <span id="loading-count"></span>
                 </div>
             </div>
         </center>
-
         </div>
 
     </body>
