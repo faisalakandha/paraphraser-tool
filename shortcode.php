@@ -46,7 +46,7 @@ function paraphraser()
 
                 function CreateLoading() {
                     myElement = $("#loading-count");
-                    myElement.text(globe + "%");
+                    myElement.text("Loading... " + globe + "%");
                 }
 
                 $("#textSubmit").click(function() {
