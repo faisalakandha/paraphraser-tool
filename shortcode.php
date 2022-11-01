@@ -124,7 +124,7 @@ function paraphraser()
             .paraphraser_option_box {
                 position: relative;
                 border: 1px solid #ddd;
-                display: flex;
+                display: felx;
                 background: #fdf9f9c7;
                 padding: 10px 10px 10px 10px;
                 justify-content: flex-start;
@@ -172,7 +172,6 @@ function paraphraser()
     </head>
 
     <body>
-
         <div>
         <center><p id="loading-count" style="z-index: 2; position: absolute; margin:auto; top: 50%; left: 50%;"></p></center>
             <div id="app-container" class="row" style="z-index: 1; position:relative;">
@@ -216,26 +215,6 @@ function paraphraser()
                                     <option value="fa">Persian</option>
                                 </select>
                             </div>
-
-        <div class="row" style="width: 80%; margin: auto;">
-
-            <div class="col-lg-6">
-                <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
-
-
-                    <div id="topMenu" class="form-group paraphraser_option_box justify-content-start">
-                        <!-- <span class="item">Word Changer</span> -->
-                        <span id="defaultItem" class="item">Fluency</span>
-                        <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Advanced</span>
-                        <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Creative</span>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <textarea placeholder="Enter your input text here..." name="input_content" id="input-content"></textarea>
-                        <div class="upload-btn-wrapper">
-
                         </div>
                     </form>
 
@@ -256,26 +235,8 @@ function paraphraser()
                         <!-- <span ></span> -->
                     </div>
                 </div>
-
             </center>
         </div>
-
-            </div>
-
-
-            <div id="textSubmit "><input type="button" value="Submit" style="margin: auto; margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
-                                                                                    border-radius: 10px;">
-                <div style="margin: auto;" id="loadingSpinner" class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <a href="https://jasper.ai/"><input type="button" value="Premium Submit" style="float: right;margin-top: 20px; border:none; background-color:#FFD700; height: 40px; width: 150px; font-size: 16px; font-weight: 500px; 
-                                                                                    border-radius: 10px;"></a>
-                <div>
-                </div>
-            </div>
-        </div>
-
-
         </div>
     </body>
 
