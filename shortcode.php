@@ -20,7 +20,7 @@ function paraphraser()
 
         <script type="text/javascript">
             var globe = 0;
-
+            var myInterval;
             var omVAL = "Fluency";
             //OBJECT Mapper
             function objectMapper(value) {
@@ -32,7 +32,6 @@ function paraphraser()
 
             // Menu 
             $("document").ready(function() {
-                var myInterval;
                 $("#loadingSpinner").hide();
                 $("#defaultItem").addClass("active");
                 $(".item").click(function() {
@@ -46,8 +45,8 @@ function paraphraser()
                 var $langSelected = $('#selectLang');
 
                 function CreateLoading() {
-                        myElement = $("#loading-count");
-                        myElement.text(globe + "%");
+                    myElement = $("#loading-count");
+                    myElement.text(globe + "%");
                 }
 
                 $("#textSubmit").click(function() {
@@ -64,7 +63,7 @@ function paraphraser()
                         myInterval = setInterval(() => {
                             globe += 1;
                             CreateLoading();
-                        }, 2000)
+                        }, 500)
 
                         return fetch('http://127.0.0.1/wp-json/paraphraser/v1/paraphrased', {
                                 method: 'POST', // or 'PUT',
@@ -75,18 +74,13 @@ function paraphraser()
                                 },
                                 body: JSON.stringify(data),
                             })
-                            .then((response) => {
-                                response.text();
-                                while (globe <= 100) {
-                                    globe++;
-                                    CreateLoading();
-                                }
-                            })
+                            .then((response) => response.text())
                             .then(function(data) {
+                                console.log(data);
                                 $("#output-content").val(data.substring(1, data.length - 1));
                                 $("#loadingSpinner").hide();
                                 $("#app-container").css("opacity", 1);
-                                clearInterval(myInterval);
+                                $("#loading-count").hide();
                             })
                             .catch((error) => {
                                 console.error('Error:', error);
@@ -178,71 +172,72 @@ function paraphraser()
     </head>
 
     <body>
-        <div id="app-container" class="row">
-
-            <div class="col-lg-6">
-                <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
-
-
-                    <div id="topMenu" class="form-group paraphraser_option_box justify-content-start">
-                        <!-- <span class="item">Word Changer</span> -->
-                        <span id="defaultItem" class="item">Fluency</span>
-                        <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Advanced</span>
-                        <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Creative</span>
-                    </div>
+        <div>
+        <center><p id="loading-count" style="z-index: 2; position: absolute; margin:auto; top: 50%; left: 50%;"></p></center>
+            <div id="app-container" class="row" style="z-index: 1; position:relative;">
+                <div class="col-lg-6">
+                    <form style="margin-left: 13px; border: solid 1px #ddd; padding: 0px 0px 5px 0px; margin-top: 20px;">
 
 
-
-                    <div class="form-group">
-                        <textarea placeholder="Enter your input text here..." name="input_content" id="input-content"></textarea>
-                        <div class="upload-btn-wrapper">
-                            <img data-src="https://www.paraphraser.io/images/file.png" alt="Upload" width="24" src="https://www.paraphraser.io/images/file.png">
-                            <button class="btn">Upload a file</button>
-                            <input type="file" name="myfile" />
+                        <div id="topMenu" class="form-group paraphraser_option_box justify-content-start">
+                            <!-- <span class="item">Word Changer</span> -->
+                            <span id="defaultItem" class="item">Fluency</span>
+                            <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Advanced</span>
+                            <img data-src="https://www.paraphraser.io/images/pro.png" style="vertical-align: baseline;" src="https://www.paraphraser.io/images/pro.png" class="loaded"><span class="item">Creative</span>
                         </div>
-                        <div size="1" autocomplete="off" style="display: inline-block; float:right; padding-right: 15px;">
-                            <select id="selectLang" name="languages" id="langs">
-                                <option value="en">English</option>
-                                <option value="es">Espanol</option>
-                                <option value="no">Norwegian</option>
-                                <option value="nl">Dutch</option>
-                                <option value="fr">French</option>
-                                <option value="de">Germany</option>
-                                <option value="br">Portugues</option>
-                                <option value="tr">Turkish</option>
-                                <option value="id">Indonesian</option>
-                                <option value="ru">Russian</option>
-                                <option value="ja">Japnese</option>
-                                <option value="zh">Chinese</option>
-                                <option value="sv">Swedish</option>
-                                <option value="ro">Romanian</option>
-                                <option value="vi">Vietnamese</option>
-                                <option value="fa">Persian</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
 
-            </div>
-            <div class="col-lg-6">
-                <div style="border: solid 1px #ddd; margin-top: 20px; padding-bottom: 45px; margin-right: 13px;">
-                    <div class="paraphraser_option_box">
-                        Paraphrased Text
+
+
+                        <div class="form-group">
+                            <textarea placeholder="Enter your input text here..." name="input_content" id="input-content"></textarea>
+                            <div class="upload-btn-wrapper">
+                                <img data-src="https://www.paraphraser.io/images/file.png" alt="Upload" width="24" src="https://www.paraphraser.io/images/file.png">
+                                <button class="btn">Upload a file</button>
+                                <input type="file" name="myfile" />
+                            </div>
+                            <div size="1" autocomplete="off" style="display: inline-block; float:right; padding-right: 15px;">
+                                <select id="selectLang" name="languages" id="langs">
+                                    <option value="en">English</option>
+                                    <option value="es">Espanol</option>
+                                    <option value="no">Norwegian</option>
+                                    <option value="nl">Dutch</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">Germany</option>
+                                    <option value="br">Portugues</option>
+                                    <option value="tr">Turkish</option>
+                                    <option value="id">Indonesian</option>
+                                    <option value="ru">Russian</option>
+                                    <option value="ja">Japnese</option>
+                                    <option value="zh">Chinese</option>
+                                    <option value="sv">Swedish</option>
+                                    <option value="ro">Romanian</option>
+                                    <option value="vi">Vietnamese</option>
+                                    <option value="fa">Persian</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-lg-6">
+                    <div style="border: solid 1px #ddd; margin-top: 20px; padding-bottom: 45px; margin-right: 13px;">
+                        <div class="paraphraser_option_box">
+                            Paraphrased Text
+                        </div>
+                        <textarea style="padding-top: 16px;" id="output-content" disabled placeholder="Paraphrased text will be shown here...." class="form-control"></textarea>
                     </div>
-                    <textarea style="padding-top: 16px;" id="output-content" disabled placeholder="Paraphrased text will be shown here...." class="form-control"></textarea>
                 </div>
             </div>
-        </div>
-        <center>
-            <div id="textSubmit"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
+            <center>
+                <div id="textSubmit"><input type="button" value="Submit" style="margin-top: 20px; border:none; background-color:violet; height: 40px; width: 150px; font-size: 20px; font-weight: 500px; 
                                                                                     border-radius: 10px;">
-                <div id="loadingSpinner" class="spinner-border text-primary" role="status">
-                    <span id="loading-count"></span>
+                    <div id="loadingSpinner" class="spinner-border text-primary" role="status">
+                        <!-- <span ></span> -->
+                    </div>
                 </div>
-            </div>
-        </center>
+            </center>
         </div>
-
+        </div>
     </body>
 
     </html>
